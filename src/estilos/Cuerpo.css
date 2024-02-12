@@ -1,0 +1,62 @@
+.cuerpo {
+    display: flex;
+    background-color: #272B33;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.filtros {
+    margin-left: 20px;
+    margin-top: 28px;
+    background-color: #3C3E44;
+    border-radius: 5px;
+    height: 300px;
+    padding: 10px;
+}
+.tabla {
+    width: 100%;
+}
+table tr td {
+    color: whitesmoke;
+    font-size: 0.9em;
+}
+input {
+    width: 100%;
+    border: none;
+    height: 30px;
+    background-color: #FF9800;
+    color: black;
+    border-radius: 5px;
+}
+select {
+    width: 200px;
+    border: none;
+    height: 30px;
+    background-color: #272B33;
+    color: whitesmoke;
+    border-radius: 5px;
+    margin: 5px;
+}
+button {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+button:hover {
+    background-color: #FF9800;
+    color: whitesmoke;
+}
+@media (max-width: 1022px) {
+    .cuerpo {
+        flex-direction: column;
+
+    }
+    .filtros {
+        display: flex;
+        margin-right: 20px;
+        justify-content: center;
+    }
+}
