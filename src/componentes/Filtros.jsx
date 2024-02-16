@@ -70,6 +70,12 @@ function Filtros({onFiltroChange}) {
             ...prevState,
             [filtroKey]: nuevoFiltro,
           }));
+        if(onFiltroChange) {
+            onFiltroChange({
+                ...filtroSeleccionado,
+                [filtroKey]:nuevoFiltro,
+            });
+        }
     };
 
     const mandarFiltro = () => {

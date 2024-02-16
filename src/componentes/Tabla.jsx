@@ -40,28 +40,32 @@ function Tabla({ filtro }) {
       (!filtro.origen || personaje.origen === filtro.origen) &&
       (!filtro.genero || personaje.genero === filtro.genero) &&
       (!filtro.estado || personaje.estado === filtro.estado) &&
-      (!filtro.buscador || personaje.nombre === filtro.buscador)
+      (!filtro.buscador ||
+        personaje.nombre.toLowerCase().startsWith(filtro.buscador.toLowerCase()))
     );
   });
 
   return (
     <div id="personajes">
-      {
-      personajesFiltrados.map((personaje) => (
-        <article key={personaje.id}>
-          <img src={personaje.imagen} alt={personaje.nombre} />
-          <h3>{personaje.nombre}</h3>
-          <span>Estado: {personaje.estado}</span>
-          <br />
-          <span>Especie: {personaje.especie}</span>
-          <br />
-          <span>Género: {personaje.genero}</span>
-          <br />
-          <span>Origen: {personaje.origen}</span>
-          <br />
-          <span>Localizacion: {personaje.localizacion}</span>
-        </article>
-      ))}
+        {personajesFiltrados.length === 0 ? (
+            <h1>No se encontraron personajes</h1>
+        ) : (
+            personajesFiltrados.map((personaje) => (
+              <article key={personaje.id}>
+                <img src={personaje.imagen} alt={personaje.nombre} />
+                <h3>{personaje.nombre}</h3>
+                <span>Estado: {personaje.estado}</span>
+                <br />
+                <span>Especie: {personaje.especie}</span>
+                <br />
+                <span>Género: {personaje.genero}</span>
+                <br />
+                <span>Origen: {personaje.origen}</span>
+                <br />
+                <span>Localizacion: {personaje.localizacion}</span>
+              </article>
+            ))
+        )}
     </div>
   );
 }
