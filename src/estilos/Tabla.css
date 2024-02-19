@@ -14,6 +14,13 @@ article {
     width: 300px;
     height: 460px;
     padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+article:hover {
+    background-color: whitesmoke;
+    color: #3C3E44;
+    transform: scale(1.05);
 }
 article img {
     width: 100%;
@@ -24,3 +31,44 @@ article span {
 h1 {
     color: whitesmoke;
 }
+.fondo {
+    backdrop-filter: blur(3px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+    z-index: 999; /* Asegura que el fondo esté detrás del popup pero delante de otros elementos */
+}
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #3C3E44;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+}
+.contenido-popup {
+    color: whitesmoke;
+}
+.foto {
+    text-align: center;
+}
+.cerrar {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    color: whitesmoke;
+    font-weight: bold;
+}
+.infoPersonaje tr td:first-child img{
+    border-radius: 5px;
+    margin-right: 10px;
+}
+  

@@ -3,6 +3,7 @@ import '../estilos/Tabla.css';
 
 function Tabla({ filtro }) {
   const [personajes, setPersonajes] = useState([]);
+  const [personajeSeleccionado, setPersonajeSeleccionado] = useState(null);
 
   useEffect(() => {
     let url = 'https://rickandmortyapi.com/api/character';
@@ -45,13 +46,21 @@ function Tabla({ filtro }) {
     );
   });
 
+  const mostrarInfo = (personaje) => {
+    setPersonajeSeleccionado(personaje);
+    console.log(personaje);
+  }
+  const cerrarPopup = () => {
+    setPersonajeSeleccionado(null);
+  }
+
   return (
     <div id="personajes">
         {personajesFiltrados.length === 0 ? (
             <h1>No se encontraron personajes</h1>
         ) : (
             personajesFiltrados.map((personaje) => (
-              <article key={personaje.id}>
+              <article key={personaje.id} onClick={() => mostrarInfo(personaje)}>
                 <img src={personaje.imagen} alt={personaje.nombre} />
                 <h3>{personaje.nombre}</h3>
                 <span>Estado: {personaje.estado}</span>
@@ -66,6 +75,43 @@ function Tabla({ filtro }) {
               </article>
             ))
         )}
+
+    {personajeSeleccionado && (
+      <>
+        <div className="fondo"></div>
+        <div className='popup'>
+          <div className="contenido-popup">
+            <span className="cerrar" onClick={cerrarPopup}>
+              X
+            </span>
+            <table>
+              <tbody className='infoPersonaje'>
+                <tr>
+                  <td>
+                    <div className="foto">
+                      <img src={personajeSeleccionado.imagen} alt={personajeSeleccionado.nombre} />
+                    </div>
+                  </td>
+                  <td>
+                    <h2>{personajeSeleccionado.nombre}</h2>
+                    <span>Estado: {personajeSeleccionado.estado}</span>
+                    <br />
+                    <span>Especie: {personajeSeleccionado.especie}</span>
+                    <br />
+                    <span>Género: {personajeSeleccionado.genero}</span>
+                    <br />
+                    <span>Origen: {personajeSeleccionado.origen}</span>
+                    <br />
+                    <span>Localizacion: {personajeSeleccionado.localizacion}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </>
+    )}
+
     </div>
   );
 }

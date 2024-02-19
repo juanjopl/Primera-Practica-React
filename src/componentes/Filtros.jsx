@@ -78,12 +78,6 @@ function Filtros({onFiltroChange}) {
         }
     };
 
-    const mandarFiltro = () => {
-        if (onFiltroChange) {
-            onFiltroChange(filtroSeleccionado);
-        }
-    };
-
     return (
         <>  
             <table>
@@ -166,11 +160,6 @@ function Filtros({onFiltroChange}) {
                             </option>
                         ))}
                     </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colSpan={2}>
-                            <button id='btnFiltrar' onClick={mandarFiltro}>Filtrar</button>
                     </td>
                 </tr>
                 </tbody>
