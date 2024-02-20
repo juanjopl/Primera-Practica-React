@@ -26,6 +26,7 @@ function Tabla({ filtro }) {
           origen: resultado.origin.name,
           localizacion: resultado.location.name,
           imagen: resultado.image,
+          tipo: resultado.type
         }));
         setPersonajes(personajesData);
       })
@@ -54,6 +55,25 @@ function Tabla({ filtro }) {
     setPersonajeSeleccionado(null);
   }
 
+  const checkEstado = (estado) => {
+    switch (estado) {
+      case 'Alive':
+        return {color: 'green'};
+      case 'Dead':
+        return {color: 'red'};
+      case 'unknown':
+        return {color: 'darkgrey'};
+    }
+  }
+
+  const checkType = (tipo) => {
+    if(tipo == "") {
+      return "No declarado";
+    }
+
+    return tipo;
+  }
+
   return (
     <div id="personajes">
         {personajesFiltrados.length === 0 ? (
@@ -80,34 +100,25 @@ function Tabla({ filtro }) {
       <>
         <div className="fondo"></div>
         <div className='popup'>
-          <div className="contenido-popup">
-            <span className="cerrar" onClick={cerrarPopup}>
+        <span className="cerrar" onClick={cerrarPopup}>
               X
-            </span>
-            <table>
-              <tbody className='infoPersonaje'>
-                <tr>
-                  <td>
-                    <div className="foto">
-                      <img src={personajeSeleccionado.imagen} alt={personajeSeleccionado.nombre} />
-                    </div>
-                  </td>
-                  <td>
-                    <h2>{personajeSeleccionado.nombre}</h2>
-                    <span>Estado: {personajeSeleccionado.estado}</span>
-                    <br />
-                    <span>Especie: {personajeSeleccionado.especie}</span>
-                    <br />
-                    <span>Género: {personajeSeleccionado.genero}</span>
-                    <br />
-                    <span>Origen: {personajeSeleccionado.origen}</span>
-                    <br />
-                    <span>Localizacion: {personajeSeleccionado.localizacion}</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        </span>
+        <div className="contenido-popup">
+            <div className="foto">
+              <img src={personajeSeleccionado.imagen} alt={personajeSeleccionado.nombre} />
+            </div>
+            <div className="personaje">
+              <h2>{personajeSeleccionado.nombre}</h2>
+              <div className="informacion">
+                <h4>Estado: <span style={checkEstado(personajeSeleccionado.estado)}>{personajeSeleccionado.estado}</span></h4>
+                <h4>Especie: <span>{personajeSeleccionado.especie}</span></h4>
+                <h4>Género: <span>{personajeSeleccionado.genero}</span></h4>
+                <h4>Tipo: <span>{checkType(personajeSeleccionado.tipo)}</span></h4>
+                <h4>Origen: <span>{personajeSeleccionado.origen}</span></h4>
+                <h4>Localizacion: <span>{personajeSeleccionado.localizacion}</span></h4>
+              </div>
+            </div>
+        </div>
         </div>
       </>
     )}
