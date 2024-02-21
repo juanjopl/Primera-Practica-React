@@ -52,6 +52,17 @@ h1 {
     z-index: 1000;
     border-radius: 5px;
     width: 700px;
+    animation: mostrarPopup 0.2s ease-out;
+}
+@keyframes mostrarPopup {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 .contenido-popup {
     color: whitesmoke;
@@ -97,4 +108,16 @@ h1 {
 }
 .personaje span {
     color: whitesmoke;
+}
+@media (max-width: 768px) {
+    .popup {
+        width: 300px;
+    }
+    .personaje {
+        margin-top: 0.5rem;
+        width: 94%;
+    }
+    .contenido-popup {
+        flex-direction: column;
+    }
 }

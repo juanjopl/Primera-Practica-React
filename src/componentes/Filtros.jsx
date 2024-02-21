@@ -78,6 +78,10 @@ function Filtros({onFiltroChange}) {
         }
     };
 
+    const reiniciar = () => {
+        window.location.reload();
+    }
+
     return (
         <>  
             <table>
@@ -160,6 +164,11 @@ function Filtros({onFiltroChange}) {
                             </option>
                         ))}
                     </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan={2}>
+                        <button onClick={reiniciar}>Reiniciar</button>
                     </td>
                 </tr>
                 </tbody>

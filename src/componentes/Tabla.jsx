@@ -49,11 +49,10 @@ function Tabla({ filtro }) {
 
   const mostrarInfo = (personaje) => {
     setPersonajeSeleccionado(personaje);
-    console.log(personaje);
   }
   const cerrarPopup = () => {
     setPersonajeSeleccionado(null);
-  }
+}
 
   const checkEstado = (estado) => {
     switch (estado) {
