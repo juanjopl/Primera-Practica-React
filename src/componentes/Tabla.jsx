@@ -26,7 +26,11 @@ function Tabla({ filtro }) {
           origen: resultado.origin.name,
           localizacion: resultado.location.name,
           imagen: resultado.image,
-          tipo: resultado.type
+          tipo: resultado.type,
+          personajes: resultado.episode.map((url) => {
+            const match = url.match(/\/(\d+)$/);
+            return match ? match[1] : null;
+          }),
         }));
         setPersonajes(personajesData);
       })
@@ -65,7 +69,7 @@ function Tabla({ filtro }) {
     }
   }
 
-  const checkType = (tipo) => {
+  const checkTipo = (tipo) => {
     if(tipo == "") {
       return "No declarado";
     }
@@ -112,9 +116,17 @@ function Tabla({ filtro }) {
                 <h4>Estado: <span style={checkEstado(personajeSeleccionado.estado)}>{personajeSeleccionado.estado}</span></h4>
                 <h4>Especie: <span>{personajeSeleccionado.especie}</span></h4>
                 <h4>Género: <span>{personajeSeleccionado.genero}</span></h4>
-                <h4>Tipo: <span>{checkType(personajeSeleccionado.tipo)}</span></h4>
+                <h4>Tipo: <span>{checkTipo(personajeSeleccionado.tipo)}</span></h4>
                 <h4>Origen: <span>{personajeSeleccionado.origen}</span></h4>
-                <h4>Localizacion: <span>{personajeSeleccionado.localizacion}</span></h4>
+                <h4>Localizacion: <span>{personajeSeleccionado.localizacion}</span></h4><br />
+                <h4>Episodios en los que aparece:</h4>
+                <select>
+                  {personajeSeleccionado.personajes.map((episodio) => (
+                    <option value={episodio}>
+                      Episodio {episodio}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
         </div>
